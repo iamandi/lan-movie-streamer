@@ -4,7 +4,8 @@ const dirTree = require("directory-tree");
 const config = require("config");
 
 const fileDirectory =
-  config.get("directoryPath") || "/mnt/d/Videos/transferred/";
+  config.get("directoryPath") ||
+  "/home/otocn/ccnx_distillery_otocn/src/Libccnx-common/ccnx/common";
 
 const watcher = chokidar.watch("file, dir, glob, or array", {
   ignored: /(^|[\/\\])\../, // ignore dotfiles
