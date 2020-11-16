@@ -44,7 +44,8 @@
   justify-content: space-between;
   transition: margin-left 0.5s;
   margin-left: 100px;
-  padding: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
   width: 100%;
 }
 
