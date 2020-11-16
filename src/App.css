@@ -23,7 +23,7 @@
   justify-content: space-between;
   align-items: center;
   transition: margin-left 0.5s;
-  margin-left: 100px;
+  margin-left: 10px;
   padding: 2%;
   padding-top: 30px;
   width: 100%;
@@ -34,7 +34,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   transition: margin-left 0.5s;
-  margin-left: 100px;
+  margin-left: 10px;
   padding: 2%;
 }
 
@@ -43,7 +43,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   transition: margin-left 0.5s;
-  margin-left: 100px;
+  margin-left: 10px;
   padding-left: 2%;
   padding-right: 2%;
   width: 100%;
@@ -67,6 +67,7 @@
   top: 0;
   left: 0;
   padding-top: 30px;
+  background-color: #f2f2f2;
 }
 
 .left-sidebar a {
@@ -145,5 +146,13 @@ ayer-container {
 }
 
 .breadcrumb {
-  text-align: left;
+  font-size: 25px;
+  padding: 10px 16px;
+  list-style: none;
+  background-color: white;
+}
+
+.breadcrumb-dot .breadcrumb-item+.breadcrumb-item::before {
+    content: "/"; 
+    color: #408080;
 }

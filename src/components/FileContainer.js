@@ -86,7 +86,7 @@ function FileContainer() {
       <div className='col'>
         <div className='row'>
           <div className='header-container'>
-            <Breadcrumb style={{ fontSize: "25px" }}>
+            <Breadcrumb className="breadcrumb-dot">
               <Breadcrumb.Item href='#'>Home</Breadcrumb.Item>
               <Breadcrumb.Item href='https://getbootstrap.com/docs/4.0/components/breadcrumb/'>
                 Library

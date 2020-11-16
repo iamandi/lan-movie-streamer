@@ -17,6 +17,7 @@ function LeftSidebar() {
         </svg>
         <br />
       </Link>
+      <br />
 
       <Link className='navbar-brand' to='/'>
         Vidly
