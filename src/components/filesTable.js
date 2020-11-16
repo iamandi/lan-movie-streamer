@@ -14,7 +14,7 @@ class FilesTable extends Component {
     {
       path: "name",
       label: "Name",
-      content: (file) => <Link to={`/files/${file._id}`}>{file.name}</Link>,
+      content: (file) => <Link to={`/files/${file.name}`}>{file.name}</Link>,
     },
     { path: "size", label: "Total_Size" },
     { path: "type", label: "Type" },

@@ -16,9 +16,7 @@ class TableBody extends Component {
 
     let cell = _.get(item, column.path);
     
-    if(column.path === 'size') {
-      cell = this.bytesToSize(cell);
-    }
+    if(column.path === 'size') cell = this.bytesToSize(cell);
 
     return cell;
   };

@@ -140,7 +140,7 @@ function FileContainer() {
           </div>
           <div className='file-container'>
             {dirTree.map(({ name, type, extension }) => (
-              <div className='item' key={name}>
+              <div className='item' key={`${name}-${extension}`}>
                 {<FileIcon type={type} extension={extension} />}
                 <div data-toggle='tooltip' data-placement='bottom' title={name}>
                   {name.length > 10 ? `${name.substr(0, 10)}...` : name}
