@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import _ from "lodash";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import FileService from "../services/file.service";
 import FileIcon from "./FileIcon";
 import ListGroup from "./common/listGroup";
@@ -104,15 +107,28 @@ function FileContainer() {
               />
             </InputGroup>
           </div>
-          <div className='table-container'>
-            <FilesTable
-              files={dirTree}
-              sortColumn={sortColumn}
-              onLike={handleLike}
-              onDelete={handleDelete}
-              onSort={handleSort}
-            />
-          </div>
+          {_.isEmpty(dirTree) ? (
+            <div
+              className='table-container'
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Loader type='Puff' color='#00BFFF' height={100} width={100} />
+            </div>
+          ) : (
+            <div className='table-container'>
+              <FilesTable
+                files={dirTree}
+                sortColumn={sortColumn}
+                onLike={handleLike}
+                onDelete={handleDelete}
+                onSort={handleSort}
+              />
+            </div>
+          )}
           <div className='table-container'>
             <MoviesTable
               movies={movies}
