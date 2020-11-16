@@ -1,8 +1,10 @@
 const chokidar = require("chokidar");
 const path = require("path");
 const dirTree = require("directory-tree");
+const config = require("config");
 
-const dir = path.join(__dirname, "../../../../../../mnt/d/Videos/transferred/");
+const fileDirectory =
+  config.get("directoryPath") || "/mnt/d/Videos/transferred/";
 
 const watcher = chokidar.watch("file, dir, glob, or array", {
   ignored: /(^|[\/\\])\../, // ignore dotfiles
@@ -10,7 +12,7 @@ const watcher = chokidar.watch("file, dir, glob, or array", {
 });
 
 const getTree = () => {
-  return dirTree(dir);
+  return dirTree(fileDirectory);
 };
 
 module.exports = getTree;

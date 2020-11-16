@@ -5,12 +5,6 @@ const files = require("./routes/files");
 const app = express();
 
 app.use(cors());
-app.use(
-  "/movies",
-  express.static(
-    path.join(__dirname, "../../../../../mnt/d/Videos/transferred/")
-  )
-);
 app.use(express.json());
 
 app.use("/api/files", files);
