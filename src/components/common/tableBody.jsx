@@ -2,14 +2,29 @@ import React, { Component } from "react";
 import _ from "lodash";
 
 class TableBody extends Component {
+  bytesToSize = (bytes) => {
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+    if (bytes === 0) return 'n/a'
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+    if (i === 0) return `${bytes} ${sizes[i]})`
+
+    return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
+  };
+
   renderCell = (item, column) => {
     if (column.content) return column.content(item);
 
-    return _.get(item, column.path);
+    let cell = _.get(item, column.path);
+    
+    if(column.path === 'size') {
+      cell = this.bytesToSize(cell);
+    }
+
+    return cell;
   };
 
   createKey = (item, column) => {
-    return item._id + (column.path || column.key);
+    return (item._id || item.path) + (column.path || column.key);
   };
 
   render() {

@@ -4,49 +4,54 @@ import { Link } from "react-router-dom";
 import TableComponent from "./common/table";
 import Like from "./common/like";
 
-class MoviesTable extends Component {
+//extension: ".mp4"
+//name: "1080P_4000K_128432521.mp4"
+//path: "/mnt/d/Videos/transferred/1080P_4000K_128432521.mp4"
+//size: 48591928
+//type: "file
+class FilesTable extends Component {
   columns = [
     {
       path: "name",
       label: "Name",
-      content: movie => <Link to={`/movies/${movie._id}`}>{movie.name}</Link>
+      content: (file) => <Link to={`/files/${file._id}`}>{file.name}</Link>,
     },
-    { path: "genre.name", label: "Genre" },
-    { path: "numberInStock", label: "Stock" },
-    { path: "dailyRentalRate", label: "Rate" },
+    { path: "size", label: "Total_Size" },
+    { path: "type", label: "Type" },
+    { path: "extension", label: "Extension" },
     {
       key: "like",
-      content: movie => (
+      content: (movie) => (
         <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
-      )
-    }
+      ),
+    },
   ];
 
   deleteColumn = {
     key: "delete",
-    content: movie => (
+    content: (file) => (
       <button
-        onClick={() => this.props.onDelete(movie)}
-        className="btn btn-danger btn-sm"
+        onClick={() => this.props.onDelete(file)}
+        className='btn btn-danger btn-sm'
       >
         Delete
       </button>
-    )
+    ),
   };
 
   constructor() {
     super();
-    const user = 'Andy'; //auth.getCurrentUser();
+    const user = "Andy"; //auth.getCurrentUser();
     if (user && user.isAdmin) this.columns.push(this.deleteColumn);
   }
 
   render() {
-    const { movies, onSort, sortColumn } = this.props;
+    const { files, onSort, sortColumn } = this.props;
 
     return (
       <TableComponent
         columns={this.columns}
-        data={movies}
+        data={files}
         sortColumn={sortColumn}
         onSort={onSort}
       />
@@ -54,4 +59,4 @@ class MoviesTable extends Component {
   }
 }
 
-export default MoviesTable;
+export default FilesTable;

@@ -10,6 +10,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import MoviesTable from "./moviesTable";
+import FilesTable from "./filesTable";
 import { getMovies, deleteMovie } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 
@@ -67,7 +68,7 @@ function FileContainer() {
     { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
   ];
   const selectedGenre = "Action";
-  const sortColumn = { path: "title", order: "asc" };
+  const sortColumn = { path: "name", order: "asc" };
 
   console.log("dirTree", dirTree);
   //{extension: ".mp4"
@@ -102,6 +103,15 @@ function FileContainer() {
                 onChange={handleSearch}
               />
             </InputGroup>
+          </div>
+          <div className='table-container'>
+            <FilesTable
+              files={dirTree}
+              sortColumn={sortColumn}
+              onLike={handleLike}
+              onDelete={handleDelete}
+              onSort={handleSort}
+            />
           </div>
           <div className='table-container'>
             <MoviesTable
