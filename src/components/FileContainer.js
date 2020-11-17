@@ -3,35 +3,20 @@ import { Link, NavLink } from "react-router-dom";
 import _ from "lodash";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import FileService from "../services/file.service";
-import FileIcon from "./FileIcon";
 import Option from "./option";
-import ListGroup from "./common/listGroup";
-import NavBar from "./navBar";
-import SearchBox from "./searchBox";
-import FileBreadCrumb from "./common/fileBreadCrumb";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
-import Dropdown from "react-bootstrap/Dropdown";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import MoviesTable from "./moviesTable";
-import FilesTable from "./filesTable";
 import FilesArrangement from "./filesArrangement";
-import { getMovies } from "../services/fakeMovieService";
-import { getGenres } from "../services/fakeGenreService";
 import { getFiles } from "../services/fakeFileService";
+import SearchBox from "./searchBox";
 
 function FileContainer() {
   const [dirTree, setDirTree] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(4);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [sortColumn, setSortColumn] = useState({ path: "name", order: "asc" });
 
-  //const [totalCount, setTotalCount] = useState(0);
   const [error, setError] = useState("");
   const [arrangement, setArrangement] = useState("list");
 
@@ -64,8 +49,9 @@ function FileContainer() {
     setDirTree(files);
   };
 
-  const handleSearch = () => {
-    console.log("handleSearch");
+  const handleSearch = (query) => {
+    //this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1 });
+    setSearchQuery(query);
   };
 
   const handleSort = (sortColumn) => {
@@ -73,30 +59,13 @@ function FileContainer() {
   };
 
   const getPagedData = () => {
-    /*
-    const {
-      pageSize,
-      currentPage,
-      sortColumn,
-      selectedGenre,
-      searchQuery,
-      movies: allMovies,
-    } = this.state;
-    */
-    //const [dirTree, setDirTree] = useState([]);
-    //const [currentPage, setCurrentPage] = useState(1);
-    //const [pageSize, setPageSize] = useState(4);
-    //const [searchQuery, setSearchQuery] = useState("");
-    //const [selectedGenre, setSelectedGenre] = useState(null);
-    //const [sortColumn, setSortColumn]
-
     let filtered = dirTree;
-    if (searchQuery)
+    if (searchQuery) {
       filtered = dirTree.filter((m) =>
-        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+        m.name.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
-    else if (selectedGenre && selectedGenre._id)
-      filtered = dirTree.filter((m) => m.genre._id === selectedGenre._id);
+    } else if (selectedCategory && selectedCategory._id)
+      filtered = dirTree.filter((m) => m.category._id === selectedCategory._id);
 
     /// Differentiate between name and other columns
     let sorted;
@@ -138,18 +107,7 @@ function FileContainer() {
               <Breadcrumb.Item active>Data</Breadcrumb.Item>
             </Breadcrumb>
 
-            <InputGroup className='mb-3 search-box'>
-              <FormControl
-                type='text'
-                name='query'
-                className='form-control mr-sm-2'
-                placeholder='Search...'
-                aria-label='Username'
-                aria-describedby='basic-addon1'
-                value={searchQuery}
-                onChange={handleSearch}
-              />
-            </InputGroup>
+            <SearchBox value={searchQuery} onChange={handleSearch} />
           </div>
 
           <div className='h2-title'>
