@@ -8,6 +8,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import FilesArrangement from "./filesArrangement";
 import { getFiles } from "../services/fakeFileService";
 import SearchBox from "./searchBox";
+import FileBreadCrumb from "./common/fileBreadCrumb";
 
 function FileContainer() {
   const [dirTree, setDirTree] = useState([]);
@@ -99,14 +100,7 @@ function FileContainer() {
       <div className='col'>
         <div className='row'>
           <div className='header-container'>
-            <Breadcrumb className='breadcrumb-dot'>
-              <Breadcrumb.Item href='#'>Home</Breadcrumb.Item>
-              <Breadcrumb.Item href='https://getbootstrap.com/docs/4.0/components/breadcrumb/'>
-                Library
-              </Breadcrumb.Item>
-              <Breadcrumb.Item active>Data</Breadcrumb.Item>
-            </Breadcrumb>
-
+            <FileBreadCrumb />
             <SearchBox value={searchQuery} onChange={handleSearch} />
           </div>
 

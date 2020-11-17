@@ -208,3 +208,12 @@ ayer-container {
   background-color: #007bff;
   border-color: #fff;
 }
+
+sidebar-l > * {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+sidebar-l > * > * {
+  flex-grow: 1;
+}

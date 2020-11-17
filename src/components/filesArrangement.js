@@ -27,7 +27,7 @@ const FilesArrangement = ({
   else
     return (
       <div className='file-container'>
-        <div class='form-group' style={{ width: "100%" }}>
+        <div className='form-group' style={{ width: "100%" }}>
           <hr />
         </div>
 
