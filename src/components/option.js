@@ -4,8 +4,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
 const Option = ({ onSelect, arrangement }) => {
-  //return <FontAwesomeIcon icon={faBars} style={style} />;
-
   return (
     <DropdownButton
       id='dropdown-basic-button'

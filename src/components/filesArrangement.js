@@ -1,11 +1,13 @@
 import FilesTable from "./filesTable";
 import FileIcon from "./FileIcon";
 
-const FilesArrangement = ({ arrangement, dirTree, sortColumn, handleSort }) => {
-  const handleLike = () => {
-    console.log(">> handleLike");
-  };
-
+const FilesArrangement = ({
+  arrangement,
+  dirTree,
+  sortColumn,
+  handleSort,
+  handleLike,
+}) => {
   const handleDelete = () => {
     console.log(">> handleDelete");
   };

@@ -25,16 +25,17 @@ import { getFiles } from "../services/fakeFileService";
 
 function FileContainer() {
   const [dirTree, setDirTree] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(4);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortColumn, setSortColumn] = useState({ path: "name", order: "asc" });
+
   const [totalCount, setTotalCount] = useState(0);
   const [error, setError] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [movies, setMovies] = useState([]);
   const [arrangement, setArrangement] = useState("list");
-  //const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    const files = getFiles();
-    setDirTree(files);
+    setDirTree(getFiles());
     /*
     FileService.getFileList().then(
       (res) => {
@@ -50,22 +51,16 @@ function FileContainer() {
     */
   }, []);
 
-  useEffect(() => {
-    const movieList = getMovies();
-    console.log("movieList", movieList);
-    setMovies(movieList);
-  }, []);
-
-  const handleGenreSelect = () => {
-    console.log("handleGenreSelect");
-  };
-
   const handleSearch = () => {
     console.log("handleSearch");
   };
 
-  const handleLike = () => {
-    console.log("handleLike");
+  const handleLike = (file) => {
+    const files = [...dirTree];
+    const index = files.indexOf(file);
+    files[index] = { ...files[index] };
+    files[index].liked = !files[index].liked;
+    setDirTree(files);
   };
 
   const handleDelete = () => {
@@ -81,22 +76,10 @@ function FileContainer() {
     setArrangement(e.toString());
   };
 
-  const genres = [
-    { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
-    { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
-    { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
-  ];
   const selectedGenre = "Action";
-  const sortColumn = { path: "name", order: "asc" };
 
   console.log("dirTree", dirTree);
   console.log(">>>>>>>> dirTree.length", dirTree.length);
-  //{extension: ".mp4"
-  //name: "1080P_4000K_128432521.mp4"
-  //path: "/mnt/d/Videos/transferred/1080P_4000K_128432521.mp4"
-  //size: 48591928
-  //type: "file}
-  //<div className='container'></div>;
 
   const directories = dirTree.filter((o) => o.type === "directory");
   const files = dirTree.filter((o) => o.type === "file");
@@ -152,6 +135,7 @@ function FileContainer() {
               dirTree={dirTree}
               sortColumn={sortColumn}
               handleSort={handleSort}
+              handleLike={handleLike}
             />
           )}
         </div>
