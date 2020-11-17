@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table'
 
 const TableComponent = ({ columns, sortColumn, onSort, data }) => {
   return (
-    <Table borderless hover >
+    <Table hover responsive>
       <TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort} />
       <TableBody columns={columns} data={data} />
     </Table>
